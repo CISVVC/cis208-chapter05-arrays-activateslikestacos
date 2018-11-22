@@ -49,10 +49,10 @@ asm_main:
 
         call    SCALE_ARRAY
 
-        pop     eax
-        pop     eax
-        pop     eax
+        ; "pop" the items off the stack
 
+        add     esp, 12
+         
 ; *********** End Assignment Code **********************
 
         popa
