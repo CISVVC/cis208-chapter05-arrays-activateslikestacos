@@ -19,11 +19,13 @@ segment .data
     myArray:    dd  1,2,3,4,5,6,7,8,9,10,\
                     11,12,13,14,15,16,17,18,19,20
     
-    scalar:     dd  2
+    firstPrompt:    db  "Please enter a scalar: ", 0
 
 ; uninitialized data is put in the .bss segment
 ;
 segment .bss
+
+    scalar:     resd 1
 
 ;
 ; code is put in the .text segment
@@ -36,6 +38,13 @@ asm_main:
 ; *********** Start  Assignment Code *******************
 
     b1:
+
+        ; Prompt for scalar
+        mov     eax, firstPrompt
+        call    print_string
+
+        call    read_int
+        mov     [scalar], eax
 
         ; Load all my arguments onto the stack
         mov     eax, [scalar]
